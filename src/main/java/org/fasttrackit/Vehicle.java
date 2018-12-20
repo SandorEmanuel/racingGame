@@ -1,9 +1,12 @@
 package org.fasttrackit;
 
 public class Vehicle {
-    String name;
-    String color;
-    double mileage;
+
+    private String name; // private - vreau sa ma folosesc de variabile doar in aceasta clasa
+    private String color;
+    private double mileage;
+
+
 
     //vrem ca orice vehicul sa accelereze
     //void nu intoarce nimic
@@ -24,5 +27,33 @@ public class Vehicle {
         System.out.println("Travel distance: " + traveledDistance + " km.");                                         // afisarea distantei parcurse
         return traveledDistance;                                                                           //trebuie sa fie ultima instructiune din metoda
 
+    }
+
+
+    //getter and setter citim si modificam ALT + Insert (0 cu num lock inactiv)
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name.trim(); // .trim() - va sterge din toate denumirile din proiect spatiile.
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
     }
 }

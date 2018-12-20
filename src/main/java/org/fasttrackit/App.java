@@ -18,11 +18,13 @@ public class App
        engine.capacity = 1500;
 
        Car car = new Car (engine); //contructor "=" se ocupa de crearea obiectului respectiv
-       car.name = "Dacia";
-       car.color = "white";
+       car.setName("Dacia");
+       car.setColor("White");
        car.doorCount = 5;
-       car.mileage = 7.5;
+       car.setMileage(7.5);
        car.running = true;
+
+        System.out.println(car.getName());
 
 
         /**facem masina (car) sa accelereze
