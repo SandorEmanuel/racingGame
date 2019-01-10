@@ -74,7 +74,7 @@ public class App {
         ((UFO) ufo).concealCheating();
 
 
-        ((AutoVehicle)ufo).accelerate(25,5);
+
 
     }
 }

@@ -38,6 +38,13 @@ public class Vehicle {
     }
 
 
+    protected Vehicle clone(){
+        Vehicle vehicle=new Vehicle();
+        //copy properties form current object or simply call this.clone()
+            return vehicle;
+        }
+
+
     //getter and setter citim si modificam ALT + Insert (0 cu num lock inactiv)
 
 
