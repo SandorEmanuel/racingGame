@@ -2,11 +2,15 @@ package org.fasttrackit;
 
 public class Vehicle {
 
+    public static int vehicleCount;
+
     private String name; // private - vreau sa ma folosesc de variabile doar in aceasta clasa
     private String color;
     private double mileage;
 
-
+    public Vehicle() {
+        vehicleCount++;
+    }
 
     //vrem ca orice vehicul sa accelereze
     //void nu intoarce nimic
