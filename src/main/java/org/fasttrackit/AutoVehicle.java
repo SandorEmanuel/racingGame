@@ -13,6 +13,12 @@ public class AutoVehicle extends Vehicle {
         this.engine = engine;
         //din acest moment nici un autovehicul nu poate fi fara a avea specificat un motor. fortam programatorii sa foloseasca mandatory fields
     }
+
+    public AutoVehicle() {
+       // this.engine=new Engine();
+        this(new Engine());
+
+    }
 }
 
 

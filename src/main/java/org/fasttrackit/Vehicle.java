@@ -33,6 +33,10 @@ public class Vehicle {
 
     }
 
+        public double accelerate(double speed){
+        return accelerate(speed, 1);
+    }
+
 
     //getter and setter citim si modificam ALT + Insert (0 cu num lock inactiv)
 
