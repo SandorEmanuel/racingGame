@@ -1,16 +1,34 @@
 package org.fasttrackit;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
 
     // crearea unui sir de circuite, trebuie specicat cate circuite dorim. (10)
     private Track[] tracks = new Track[10];
 
-    Vehicle firstCompetitor;
-    Vehicle secondCompetitor;
+    private List<Vehicle> competitors = new ArrayList<>();
 
     public void start() {
+        addCompetitors(3);
+        displayCompetitors();
         addTracks();
         displayAvailableTracks();
+    }
+
+    private void addCompetitors(int competitorCount){
+        for (int i =0; i < competitorCount; i++){
+            Vehicle vehicle = new Vehicle();
+            // vehicle properties will be populated when we learn get user`s input
+            competitors.add(vehicle);
+        }
+    }
+    private void displayCompetitors() {
+        System.out.println("Welcome! Today`s competitors are:");
+        for(int i = 0; i < competitors.size(); i++) {
+            System.out.println(competitors.get(i).getName());
+        }
     }
 
     //facem o metoda prin care sa accesam toate track-urile din aplicatie
