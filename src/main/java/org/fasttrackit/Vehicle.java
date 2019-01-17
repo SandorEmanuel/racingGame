@@ -7,6 +7,10 @@ public class Vehicle {
     private String name; // private - vreau sa ma folosesc de variabile doar in aceasta clasa
     private String color;
     private double mileage;
+    private double fuelLevel;
+    private double totalTravelDistance;
+
+
 
     public Vehicle() {
         vehicleCount++;
@@ -28,7 +32,15 @@ public class Vehicle {
         System.out.println(name + " accelerated with " + speed + " km/h for " + durationInHours + " hours. "); // concatenare - lipirea mai multor stringuri
         double traveledDistance = speed * durationInHours;                                                  // definirea formulei de calcul
 
-        System.out.println("Travel distance: " + traveledDistance + " km.");                                         // afisarea distantei parcurse
+        System.out.println("Travel distance: " + traveledDistance + " km.");// afisarea distantei parcurse
+        totalTravelDistance += traveledDistance; //acelasi lucru ca si totalTravelDistance = totalTravelDistance + traveledDistance;
+        System.out.println("Total traveled distance: " + totalTravelDistance);
+
+        double spentFuel = traveledDistance * mileage/100;
+
+        fuelLevel -= spentFuel;
+        System.out.println("Remaining fuel: " +fuelLevel);
+
         return traveledDistance;                                                                           //trebuie sa fie ultima instructiune din metoda
 
     }
@@ -54,6 +66,22 @@ public class Vehicle {
 
     public void setName(String name) {
         this.name = name.trim(); // .trim() - va sterge din toate denumirile din proiect spatiile.
+    }
+
+    public double getFuelLevel() {
+        return fuelLevel;
+    }
+
+    public void setFuelLevel(double fuelLevel) {
+        this.fuelLevel = fuelLevel;
+    }
+
+    public double getTotalTravelDistance() {
+        return totalTravelDistance;
+    }
+
+    public void setTotalTravelDistance(double totalTravelDistance) {
+        this.totalTravelDistance = totalTravelDistance;
     }
 
     public String getColor() {
