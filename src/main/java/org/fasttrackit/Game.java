@@ -8,26 +8,38 @@ public class Game {
     Vehicle firstCompetitor;
     Vehicle secondCompetitor;
 
-    public void start(){
+    public void start() {
         addTracks();
         displayAvailableTracks();
     }
 
     //facem o metoda prin care sa accesam toate track-urile din aplicatie
-    private void addTracks(){
+    private void addTracks() {
         Track track1 = new Track("Highway", 300);
         Track track2 = new Track("Seaside", 100);
 
-        tracks[0]= track1;
-        tracks[1]= track2;
+        tracks[0] = track1;
+        tracks[1] = track2;
 
     }
 
-    private void displayAvailableTracks(){
+    private void displayAvailableTracks() {
         System.out.println("Available tracks:");
-        System.out.println(tracks[0].getName());
-        System.out.println(tracks[1].getName());
+
+        //classic for loop - se foloseste cand am nevoie sa printez si indexul adica pozitia din sir. sau daca vreau sa rulez actiunea de un anumit numar de ori.
+//        for (int i = 0; i < tracks.length; i++) {
+//            if (tracks[i] != null) {   //if object is different than null
+//                System.out.println(tracks[i].getName());
+//            }
+//
+//        }
+        // enhanced for / "for-each"  - nu avem cum sa intram intr-un infinite loop. se foloseste cand vreau sa vad toate proprietatile dintr-o colectie
+        for (Track track: tracks){
+            if (track != null) {
+                System.out.println(track.getName());
+            }
+
+        }
 
     }
-
 }
