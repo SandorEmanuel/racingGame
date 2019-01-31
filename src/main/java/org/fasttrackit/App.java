@@ -7,7 +7,7 @@ package org.fasttrackit;
  * System.out.println(car.toString())
  */
 public class App {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 //        Engine engine = new Engine();
 //        engine.manufacturer = "Renault";
 //        engine.capacity = 1500;
@@ -73,10 +73,6 @@ public class App {
 
         Game game = new Game();
         game.start();
-
-
-
-
 
 
     }

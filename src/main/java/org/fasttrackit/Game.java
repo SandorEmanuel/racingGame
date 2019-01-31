@@ -1,7 +1,10 @@
 package org.fasttrackit;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 
@@ -10,23 +13,51 @@ public class Game {
 
     private List<Vehicle> competitors = new ArrayList<>();
 
-    public void start() {
-        addCompetitors(3);
+    public void start() throws Exception {
+        addCompetitors(getCompetitorCountFromUser());
         displayCompetitors();
         addTracks();
         displayAvailableTracks();
     }
 
-    private void addCompetitors(int competitorCount){
-        for (int i =0; i < competitorCount; i++){
+    private void addCompetitors(int competitorCount) {
+        for (int i = 0; i < competitorCount; i++) {
             Vehicle vehicle = new Vehicle();
-            // vehicle properties will be populated when we learn get user`s input
+            vehicle.setName(getVehicleNameFromUser()); // setam metoda definita mai devreme getVehicleNameFromUser sa seteze numele vehicle.
+            vehicle.setMileage(ThreadLocalRandom.current().nextDouble(5, 25)); // setam pentru masina noastra un consum aleatoriu din intervalul [5-25]
+            System.out.println("Vehicle milage is :" + vehicle.getMileage()); // afisarea consumului setat aleatoriu mai sus pentru vehiculul creat
+
             competitors.add(vehicle);
         }
     }
+
+    // facem o metoda prin care preluam de la user numarul de competitori. ulterior utilizam metoda ca si parametru pentru metoda addCompetitors din metoda start()
+    private String getVehicleNameFromUser() {
+        System.out.println("Please enter a vehicle name:");
+        Scanner scanner = new Scanner(System.in);
+        String name = scanner.nextLine();
+        System.out.println("Your vehicle name is: " + name);
+        return name;
+    }
+
+    private int getCompetitorCountFromUser() throws Exception {
+        System.out.println("Please enter number of players:");
+        Scanner scanner = new Scanner(System.in);
+
+        // incercam sa evitam ca utilizatorul sa puna un alt tip de input, altul decat Integer (int) prin afisarea unui mesaj mai reprezentativ
+        try {
+            int numberOfPlayers = scanner.nextInt();
+            System.out.println("Selected number of players: " + numberOfPlayers);
+            return numberOfPlayers;
+        } catch (InputMismatchException exception) {
+            throw  new Exception("Integer required."); // select Exception si ALT+Enter + Add exception to method signature
+        }
+
+    }
+
     private void displayCompetitors() {
         System.out.println("Welcome! Today`s competitors are:");
-        for(int i = 0; i < competitors.size(); i++) {
+        for (int i = 0; i < competitors.size(); i++) {
             System.out.println(competitors.get(i).getName());
         }
     }
@@ -52,7 +83,7 @@ public class Game {
 //
 //        }
         // enhanced for / "for-each"  - nu avem cum sa intram intr-un infinite loop. se foloseste cand vreau sa vad toate proprietatile dintr-o colectie
-        for (Track track: tracks){
+        for (Track track : tracks) {
             if (track != null) {
                 System.out.println(track.getName());
             }
