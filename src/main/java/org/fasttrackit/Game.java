@@ -32,7 +32,7 @@ public class Game {
                 double speed = getAccelerationSpeedFromUser();
                 vehicle.accelerate(speed);
 
-                if (vehicle.getFuelLevel() >= 0){
+                if (vehicle.getFuelLevel() <= 0){
                     competitorsWithoutFuel ++;
                 }
 
