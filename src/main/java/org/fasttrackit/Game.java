@@ -1,5 +1,8 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.TopWinner;
+import org.fasttrackit.service.TopWinnerService;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -7,10 +10,11 @@ import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
+    private TopWinnerService  topWinnerService = new TopWinnerService();
 
     // crearea unui sir de circuite, trebuie specicat cate circuite dorim. (10)
-    private Track[] tracks = new Track[10];
 
+    private Track[] tracks = new Track[10];
     private List<Vehicle> competitors = new ArrayList<>();
 
     public void start() throws Exception {
@@ -38,11 +42,16 @@ public class Game {
 
                 if(vehicle.getTotalTravelDistance() >= track.getLength()){
                     System.out.println("Congrats! The winner is "+ vehicle.getName());
+                    TopWinner topWinner = new TopWinner();
+                    topWinner.setName(vehicle.getName());
+                    topWinner.setWonRaces(1);
+                    topWinnerService.createTopWinner(topWinner);
                     noWinnerYet = false;
                     break;
                 }
             }
         }
+
 
     }
 
@@ -51,6 +60,7 @@ public class Game {
             Vehicle vehicle = new Vehicle();
             vehicle.setName(getVehicleNameFromUser()); // setam metoda definita mai devreme getVehicleNameFromUser sa seteze numele vehicle.
             vehicle.setMileage(ThreadLocalRandom.current().nextDouble(5, 25)); // setam pentru masina noastra un consum aleatoriu din intervalul [5-25]
+            vehicle.setFuelLevel(80);
             System.out.println("Vehicle milage is :" + vehicle.getMileage()); // afisarea consumului setat aleatoriu mai sus pentru vehiculul creat
 
             competitors.add(vehicle);
