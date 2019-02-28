@@ -12,17 +12,17 @@ public class DatabaseConfiguration {
     public static Connection getConnection() throws IOException, ClassNotFoundException, SQLException {
         Properties prop = new Properties();
 
-        InputStream inputStream = DatabaseConfiguration.class
-                .getClassLoader()
-                .getResourceAsStream("db.properties");
-        prop.load(inputStream);
-        prop.getProperty("DB_URL");
+        // try-with-resources
+        try (InputStream inputStream = DatabaseConfiguration.class.getClassLoader().getResourceAsStream("db.properties")) {
+            prop.load(inputStream);
+            prop.getProperty("DB_URL");
 
 //        load driver class
-        Class.forName(prop.getProperty("DB_DRIVER_CLASS"));
-        return DriverManager.getConnection(
-                prop.getProperty("DB_URL"),
-                prop.getProperty("DB_USERNAME"),
-                prop.getProperty("DB_PASSWORD"));
+            Class.forName(prop.getProperty("DB_DRIVER_CLASS"));
+            return DriverManager.getConnection(
+                    prop.getProperty("DB_URL"),
+                    prop.getProperty("DB_USERNAME"),
+                    prop.getProperty("DB_PASSWORD"));
+        }
     }
 }
